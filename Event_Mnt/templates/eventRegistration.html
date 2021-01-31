@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Event Registration</title>
+    </head>
+
+    <body>
+        <div class="name">
+            <h1>Event Registration</h1>
+        </div>
+        <div class="evtRg">
+            <form action="" method="POST">
+            {% csrf_token %}
+                <br><br>
+                <label for="eName" id="tmp">Event Name</label>
+                <input type="text" id="eName" name="eventName" class="frm"><br><br>
+                <label for="eDcr" id="tmp1">Description</label>
+                <textarea rows="3" cols="50" id="eDcr" name="description" class="frm"></textarea><br><br></p>
+                <label for="eL" id="tmp2">Location</label>
+                <input type="text" id="eL" name="location" class="frm"><br><br></p>
+                <label for="periodSt">From</label>
+                <input type="datetime-local" id="periodSt" name="start" class="frm"><label for="periodEnd">To</label><input type="datetime-local" id="periodEnd" onchange="validate()" name="end" class="frm">
+                <p id="alert" style="visibility: hidden;">*Enter valid interval</p>
+                <label for="last">Registration Deadline</label>
+                <input type="datetime-local" onchange="valid_last()" id="last" name="deadline" class="frm"><br><br></p>
+                <p id="dead" style="visibility: hidden;">*Enter valid deadline</p>
+                <label for="mail">Host E-mail</label>
+                <input type="email" id="mail" name="mail" class="frm"><br><br></p>
+                <label for="pwd">Password</label>
+                <input type="password" id="pwd" name="password" class="frm"><br><br></p>
+                <input type="submit" id="btn">
+            </form>
+        </div>
+    </body>
+</html>
+
+<script>
+function validate() {
+    start=document.getElementById("periodSt").value;
+    end=document.getElementById("periodEnd").value;
+    if (start>end)
+    {
+        document.getElementById("alert").style.visibility="visible";
+    }
+    else
+        document.getElementById("alert").style.visibility="hidden";
+}
+
+function valid_last() {
+    end=document.getElementById("periodEnd").value;
+    deadline=document.getElementById("last").value;
+    if(deadline>end)
+        document.getElementById("dead").style.visibility="visible";
+    else
+        document.getElementById("dead").style.visibility="hidden";
+}
+</script>
+<style>
+    body{
+        background-image: url("https://images.unsplash.com/photo-1510924199351-4e9d94df18a6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80");
+        background-size: cover;
+    }
+
+    .name{
+        height: 1.5cm;
+        font-size: larger;
+        font-style:inherit;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #FFE77AFF;
+        margin-top : 1cm;
+        text-align: center;
+        background-color: #2C5F2DFF;
+    }
+
+    .evtRg{
+        height: 600px;
+        width: 750px;
+        background-color: #990011FF;
+        color: #FCF6F5FF;
+        border-radius: 5px;
+        margin: 1cm 7cm 5cm 10cm;
+    }
+    .frm{
+        background-color: aqua;
+    }
+
+    #alert{
+        margin: -3px 0px 25px 460.5px;
+        color: coral;
+    }
+    #dead{
+        margin: -43px 0px 25px 223.5px;
+        color: coral;
+    }
+    #eName{
+        margin: 3.5px 10px 10px 3.5px
+    }
+    #eDcr{
+        margin: 2.5px 10px 10px 157.5px
+    }
+    #eL{
+        margin: 2.5px 10px 10px 25.5px
+    }
+    #periodSt{
+        margin: 2.5px 10px 10px 17.5px
+    }
+    #periodEnd{
+        margin: 2.5px 10px 10px 17.5px
+    }
+    #last{
+        margin: 2.5px 10px 10px 1.5px
+    }
+    #mail{
+        margin: 3.5px 10px 10px 10.5px
+    }
+    #pwd{
+        margin: 3.5px 10px 10px 25.5px
+    }
+    #tmp{
+        margin-bottom: 7px;
+    }
+    #tmp1
+    {
+        position: absolute;
+    }
+
+    label{
+        margin-left: 50px;
+        margin-right: 20px;
+    }
+
+    #btn{
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-style: oblique;
+        height: 32px;
+        margin-left: 300px;
+        font-size: large;
+        color: white;
+        padding-left: 5%;
+        padding-right: 5%;
+        background: #F95700FF;
+        border-radius: 20px;
+    }
+</style>
